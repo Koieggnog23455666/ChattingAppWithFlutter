@@ -1,9 +1,12 @@
 import 'package:chatting_app_with_firebase/authentication/Login_screen.dart';
 import 'package:chatting_app_with_firebase/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 late Size mq;
 
 void main() {
+  _intializeFirebase();
   runApp(const MyApp());
 }
 
@@ -31,5 +34,9 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+_intializeFirebase() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+}
 
