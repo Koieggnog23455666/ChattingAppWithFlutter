@@ -1,13 +1,19 @@
 import 'package:chatting_app_with_firebase/authentication/Login_screen.dart';
 import 'package:chatting_app_with_firebase/screens/home_screen.dart';
+import 'package:chatting_app_with_firebase/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'firebase_options.dart';
 late Size mq;
 
 void main() {
-  _intializeFirebase();
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown] ).then((value) {
+      _intializeFirebase();
+      runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -20,6 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ChatRoom',
       theme: ThemeData(
+scaffoldBackgroundColor: Colors.black87,
         appBarTheme: AppBarTheme(
       titleTextStyle: TextStyle(
         color: Colors.white,
@@ -30,7 +37,7 @@ class MyApp extends StatelessWidget {
           )
         )
       ),
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }
